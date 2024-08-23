@@ -1,32 +1,19 @@
-import React from "react";
+// import React from "react";
 
-const Footer = () => {
+function Footer(props) {
   return (
-    <div>
-      <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">
-              Features
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">
-              FAQs
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-body-secondary">
-              About
-            </a>
-          </li>
-        </ul>
-        <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
-      </footer>
-    </div>
+    <footer className="bg-dark text-light py-4">
+      <div className="container">
+        <div className="row justify-content-center align-items-center">
+          <div className="col-md-6">
+            <p className="mb-0">
+              © 2023 All rights reserved By <span className="font-weight-bold">SHANMUGAM</span>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
-};
+}
 
 export default Footer;

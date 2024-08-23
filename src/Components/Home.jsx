@@ -1,48 +1,78 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+// import React from "react";
+import { useUserContext } from "./context/usercontext";
 
-const Home = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    await axios
-      .get("https://65d582f13f1ab8c63437231c.mockapi.io/api/products")
-      .then((res) => setProducts(res.data))
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+function Home() {
+  const { name, setName, email, setEmail, phone, setPhone, handleFormSubmit } =
+    useUserContext();
+  const formId = 11;
   return (
-    <div>
-      <div className="container">
-        <div className="row row-cols-1 row-cols-md-3 g-4 text-center">
-          {products.map((item, index) => (
-            <div key={index} className="col-md-4 mb-3">
-              <div className="card h-100">
-                <img
-                  src={item.product_image}
-                  className="card-img-top"
-                  width={"100%"}
-                  height={"350px"}
-                  alt={item.product_name}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{item.product_name}</h5>
-                  <p className="card-text">{item.product_description}</p>
-                  <p className="card-text">{item.product_price}</p>
-                </div>
-              </div>
+    <div className="container my-5">
+      <div className="row align-items-center">
+        <div className="col-lg-7 text-center text-lg-start">
+          
+          <img
+            src="https://cdni.iconscout.com/illustration/premium/thumb/contact-us-3483604-2912020.png"
+            className="img-fluid"
+            alt="Contact Us Illustration"
+          />
+        </div>
+        <div className="col-md-10 mx-auto col-lg-5">
+            <h2 className="display-4 fw-bold lh-1 text-white mb-4">
+              Enter Your <span className="text-danger">Data</span>
+            </h2>
+          <form
+            className="p-4 p-md-5 border rounded bg-light"
+            onSubmit={(e) => handleFormSubmit(e, { name, email, phone }, formId)}
+          >
+            
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="nameInput"
+                placeholder="Enter the Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-          ))}
+            <div className="mb-3">
+              <input
+                type="email"
+                className="form-control"
+                id="emailInput"
+                placeholder="name@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="number"
+                className="form-control"
+                id="floatingNumber"
+                placeholder="Phone Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+            <div className="form-check mb-3">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="rememberCheck"
+              />
+              <label className="form-check-label" htmlFor="rememberCheck">
+                Remember me
+              </label>
+            </div>
+            <button className="btn btn-primary w-100" type="submit">
+              Add To List
+            </button>
+          </form>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Home;
